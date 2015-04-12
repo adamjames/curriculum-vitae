@@ -1,0 +1,5 @@
+# Ignore LaTeX guff.
+*.log
+*.aux
+*.out
+*.gz
