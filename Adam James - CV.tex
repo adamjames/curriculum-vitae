@@ -16,14 +16,12 @@
 \usepackage{tabularx}
 
 % for social icons
-\usepackage{fontspec} % required on OS X if compiling under XeLaTeX. LuaTex should work without this.
-\usepackage{fontawesome} % on OS X, download and install the OTF version of the font using Font Viewer to get compilation to work under XeLaTeX
+%\usepackage{fontspec} % required on OS X if compiling under XeLaTeX. LuaTex should work without this.
+%\usepackage{fontawesome} % on OS X, download and install the OTF version of the font using Font Viewer to get compilation to work under XeLaTeX
+\usepackage{pifont}% http://ctan.org/pkg/pifont
 
 % discourage hyphenation
 \usepackage[none]{hyphenat}
-
-% character encoding
-\usepackage[utf8]{inputenc}
 
 % adjust the page margins
 % The scale=0.8 ensures that the margins are such that 80% of the page is reserved for the total body (change 0.8 to whatever you like between
@@ -50,17 +48,7 @@
 % personal data
 \firstname{Adam}
 \familyname{James}
-%\title{Resumé title (optional)}
-%\address{\small{Your address here}{\small{ - postcode}}}
-%\mobile{\href{TEL:+440000000000}{+44 0000 000000}}
-%\phone{+44 0000 000000}
-%\fax{fax (optional)}
-\email{adam@adamjames.me}
-\homepage{adamjames.me}
-\social[linkedin]{adamleejames}
-\social[twitter]{mrwizrd}
-\social[github]{adamjames}
-\extrainfo{Crafted with \faHeart, in \LaTeX}
+\extrainfo{Crafted with \ding{164}, in \LaTeX}
 
 % '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it 
 % (put it to 0pt for no frame) and 'picture' is the name of the picture file
