@@ -27,13 +27,18 @@
 % The scale=0.8 ensures that the margins are such that 80% of the page is reserved for the total body (change 0.8 to whatever you like between
 % 0.0 and 1.0), while top=2cm forces the top margin to be exactly 2cm (again, change this to whatever you like).
 % http://tex.stackexchange.com/a/82871
-\usepackage[scale=0.86]{geometry}
+\usepackage[scale=0.86, top=1.5cm, bottom=2cm]{geometry}
 
 % if you want to change the width of the column with the dates
 %\setlength{\hintscolumnwidth}{3cm}
 
 % only for the classic theme, if you want to change the width of your name placeholder (to leave more space for your address details
 %\AtBeginDocument{\setlength{\maketitlenamewidth}{6.05cm}}
+
+%\let\originalrecomputecvlengths\recomputecvlengths
+%\renewcommand*{\recomputecvlengths}{%
+%\originalrecomputecvlengths%
+%\setlength{\quotewidth}{1.0\textwidth}}
 
 % required when changes are made to page layout lengths
 \AtBeginDocument{\recomputelengths}
@@ -45,6 +50,19 @@
 \definecolor{dark-gray}{gray}{0.20}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour}
 
+% More precise sizing.
+\usepackage{anyfontsize}
+
+% Absolutely positioned text boxes.
+% https://tex.stackexchange.com/a/24675
+\usepackage[pscoord]{eso-pic}% The zero point of the coordinate system is the lower left corner of the page (the default).
+\newcommand{\placetextbox}[3]{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \setbox0=\hbox{#3}% Put <stuff> in a box
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(\LenToUnit{#1\paperwidth},\LenToUnit{#2\paperheight}){\vtop{{\null}\parbox{\textwidth}{#3}}}%
+  }%
+}%
+
 % personal data
 \firstname{Adam}
 \familyname{James}
@@ -53,8 +71,7 @@
 % '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it 
 % (put it to 0pt for no frame) and 'picture' is the name of the picture file
 %\photo[64pt][0.4pt]{picture}					% optional
-\quote{\color{dark-gray} .NET-centric developer with five years of experience in\\enterprise software development. Interested in building modern,\\scalable solutions that provide effortless, low-latency\\user experiences.
-\vspace*{0.3cm}
+
 }										% optional
 
 % to show numerical labels in the bibliography; only useful if you make citations in your resume
@@ -75,24 +92,36 @@
 %----------------------------------------------------------------------------------
 \begin{document}
 \maketitle
+%\placetextbox{distance from left}{distance from bottom}
+\placetextbox{0.07}{0.955}{\color{dark-gray} \textit{\fontsize{11}{14}\selectfont{.NET-centric developer with six years of experience in enterprise\\software development. Interested in building modern, scalable\\solutions that provide effortless, low-latency user experiences.}}}%
 
 % Add NEGATIVE space after the header on the first page.
 % This gives us more space for the summary section. Modify as desired.
 % http://tex.stackexchange.com/a/82871
-\vspace*{-1.0cm}
+\vspace*{-1cm}
 \section{Technologies}
 \cvline{}{I have varying levels of experience with the following technologies, platforms and products:}
-\small{\cvitem{Technologies}{C\#, VB.NET, ASP.NET MVC \& Web Forms, HTML, CSS, T-SQL, WinForms}}
-\small{\cvitem{Looking At}{.ΝΕΤ Core, Javascript, Angular, React, Python, Docker, Android}}
-\small{\cvitem{\footnotesize{IDE's \& Editors}}{Visual Studio 2005-2017, SQL Server Mgmt. Studio, Eclipse, Sublime Text}}
-\small{\cvitem{SCM}{Common centralised and decentralised systems, inc.  SourceSafe, SVN, Git \& Mercurial}}
-\small{\cvitem{Infrastructure}{Jenkins, Octopus Deploy, DBUp}}
+\small{\cvitem{Primary}{C\#, ASP.NET Core, EF Core, HTML, CSS, T-SQL}}
+\small{\cvitem{Older}{VB.NET, ASP.NET MVC, Web Forms, WinForms}}
+\small{\cvitem{Looking at}{Angular, React, Android}}
+\small{\cvitem{\footnotesize{IDE's \& Editors}}{Visual Studio 2005-2019, VS Code, SQL Server Mgmt. Studio, Eclipse, Sublime Text}}
+\small{\cvitem{SCM}{Common centralised and decentralised systems, inc. Git, SVN, SourceSafe \& Mercurial}}
+\small{\cvitem{Infrastructure}{Azure Devops, Jenkins, Octopus Deploy, DBUp}}
 \small{\cvitem{OS}{Windows 7-10, Linux (Debian, Arch) and OS X (Yosemite onwards)
 }}
 
-\section{Notable Experience \& Achievements}
-\cventry{Nov. 2015 - Present}{Ctrack (Inseego Corp.)}{}{Leeds}{}{
-	I currently work as a Developer for Ctrack; one of the world’s largest telematics (vehicle tracking) companies, with 1,000,000 units deployed in over 50 countries across 5 continents. We provide our customers with the means to make targeted improvements to driver behaviour, improving safety and reducing costs. This is a full-stack development role focused on bespoke products and tools for the UK and European markets.
+\section{Experience \& Achievements}
+\cventry{Jan. 2019 - Present}{VentureAxis}{}{Leeds}{}{
+	I'm currently working for VentureAxis, a software consultancy based in Leeds. 
+	\newline{} - Building a custom B2B e-commerce solution using .Net Core, EF Core and SQL Server for the largest independent music distributor in the UK with over £25m in sales annually.
+	\newline{} - Real time unique pricing of millions of products on a per-customer basis.
+	\newline{} - Payment through line-of-credit API developed in collaboration with the client, avoiding direct processing.
+	\newline{} - Exposure to Angular, SignalR and React through work on smaller projects or in my own time.
+	\newline{}
+}
+
+\cventry{Nov. 2015 - Dec. 2019}{Ctrack (Inseego Corp.)}{}{Leeds}{}{
+	Worked as a Developer for Ctrack; one of the world’s largest telematics (vehicle tracking) companies, with 1,000,000 units deployed in over 50 countries across 5 continents. We provided customers with the means to make targeted improvements to driver behaviour, improving safety and reducing costs. This was a full-stack development role focused on bespoke products and tools for the UK and European markets.
 	\newline{} - Developed applications in use by our engineers to commission tracking units using mobile devices. For the first time, our engineers could work  independently to complete field installations and servicing. Automated data-gathering and task closure saves engineers' time and ensures compliance, accuracy and accountability.
 	\newline{} - Maintained our customer-facing SOAP/JSON API, making additions and changes in coordination with third parties. Improved error handling and added performance measurement mechanisms. Improved test coverage using SpecFlow.
 	\newline{} - Built tools allowing rapid, accurate bulk import of customer information, eliminating the need for manual data transformation and copying by customer service staff and shortening the time taken to onboard customers.
