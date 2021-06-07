@@ -57,10 +57,10 @@
 % https://tex.stackexchange.com/a/24675
 \usepackage[pscoord]{eso-pic}% The zero point of the coordinate system is the lower left corner of the page (the default).
 \newcommand{\placetextbox}[3]{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
-  \setbox0=\hbox{#3}% Put <stuff> in a box
-  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
-    \put(\LenToUnit{#1\paperwidth},\LenToUnit{#2\paperheight}){\vtop{{\null}\parbox{\textwidth}{#3}}}%
-  }%
+	\setbox0=\hbox{#3}% Put <stuff> in a box
+	\AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+		\put(\LenToUnit{#1\paperwidth},\LenToUnit{#2\paperheight}){\vtop{{\null}\parbox{\textwidth}{#3}}}%
+	}%
 }%
 
 % personal data
@@ -82,124 +82,127 @@
 %\newcites{book,misc}{{Books},{Others}}
 
 % Page numbering.
-%\usepackage{lastpage}
-%\rfoot{\textit{\small{\thepage/\pageref{LastPage}}}}
+\usepackage{lastpage}
+\rfoot{\textit{\small{\thepage/\pageref{LastPage}}}}
 
 %----------------------------------------------------------------------------------
 %            content
 %----------------------------------------------------------------------------------
 \begin{document}
-\maketitle
-%\placetextbox{distance from left}{distance from bottom}
-\placetextbox{0.07}{0.955}{\color{dark-gray} \textit{\fontsize{11}{14}\selectfont{.NET-centric developer with six years of experience in enterprise\\software development. Interested in building modern, scalable\\solutions that provide effortless, low-latency user experiences.}}}%
-
-% Add NEGATIVE space after the header on the first page.
-% This gives us more space for the summary section. Modify as desired.
-% http://tex.stackexchange.com/a/82871
-\vspace*{-1cm}
-\section{Technologies}
-\cvline{}{I have varying levels of experience with the following technologies, platforms and products:}
-\small{\cvitem{Primary}{C\#, ASP.NET Core, EF Core, HTML, CSS, T-SQL}}
-\small{\cvitem{Older}{VB.NET, ASP.NET MVC, Web Forms, WinForms}}
-\small{\cvitem{Looking at}{Angular, React, Android}}
-\small{\cvitem{\footnotesize{IDE's \& Editors}}{Visual Studio 2005-2019, VS Code, SQL Server Mgmt. Studio, Eclipse, Sublime Text}}
-\small{\cvitem{SCM}{Common centralised and decentralised systems, inc. Git, SVN, SourceSafe \& Mercurial}}
-\small{\cvitem{Infrastructure}{Azure Devops, Jenkins, Octopus Deploy, DBUp}}
-\small{\cvitem{OS}{Windows 7-10, Linux (Debian, Arch) and OS X (Yosemite onwards)
-}}
-
-\section{Experience \& Achievements}
-\cventry{Jan. 2019 - Present}{VentureAxis}{}{Leeds}{}{
-	I'm currently working for VentureAxis, a software consultancy based in Leeds. 
-	\newline{} - Built a custom B2B e-commerce solution using .Net Core, EF Core and SQL Server for the largest independent music distributor in the UK with over £25m in sales annually. Featured real-time unique pricing of millions of products on a per-customer basis, with payment via line-of-credit API or SAGEPay.
-	\newline{} - Built a mailshot system for release announcements, written in Angular 10, with a .Net Core back-end. Designed primarily for desktop use, with polyfills for legacy support and manifest for mobile enhancements.
-	\newline{} - Featured KeyVault for secure bootstrapping, encryption of customer data via an EF ValueConverter, JWT authentication and PDF generation using Node.js Azure functions with upload to Blob Storage.
-	\newline{} - Built customised integrations with Shopify and Bandcamp.
-}
-
-\cventry{Nov. 2015 - Dec. 2019}{Ctrack (Inseego Corp.)}{}{Leeds}{}{
-	Worked as a Developer for Ctrack; one of the world’s largest telematics (vehicle tracking) companies, with 1,000,000 units deployed in over 50 countries across 5 continents. We provided customers with the means to make targeted improvements to driver behaviour, improving safety and reducing costs. This was a full-stack development role focused on bespoke products and tools for the UK and European markets.
-	\newline{} - Developed applications in use by our engineers to commission tracking units using mobile devices. For the first time, our engineers could work  independently to complete field installations and servicing. Automated data-gathering and task closure saves engineers' time and ensures compliance, accuracy and accountability.
-	\newline{} - Maintained our customer-facing SOAP/JSON API, making additions and changes in coordination with third parties. Improved error handling and added performance measurement mechanisms. Improved test coverage using SpecFlow.
-	\newline{} - Built tools allowing rapid, accurate bulk import of customer information, eliminating the need for manual data transformation and copying by customer service staff and shortening the time taken to onboard customers.
-	\newline{} - Configured and utilised CI/CD infrastructure (Jenkins, Octopus Deploy) via Github to allow for one-click compilation, testing, packaging and deployment of new software.
-	\newline{}
-}
-%\begin{textblock}{s1}(12.5,3.12)\includegraphics[scale=1.1]{oracle}\end{textblock}
-\cventry{Feb. 2013 - Nov. 2015}{Oracle Corporation}{}{Melton}{}{
-	Worked on \textit{FRS-POS}, a specialised point of sale, stock logistics and reporting platform written for the furniture retail industry and used by household names worldwide, including a 1000-user deployment in the United States. Our six-person team (responsible for all development and support) joined Oracle with their acquisition of \textit{MICROS Systems} in September of 2014.
-	\newline{}
-	\newline{} - Delivered major new feature sets and enhancements instrumental in migrating customers using a UNIX-based version to the current, .NET-based implementation of our team's product. Work spanned all product layers, including user interface, presentation logic, business logic and back-end.
-	\newline{} - Shipped code across six major releases. Created reporting output for new features using Crystal Reports. Back-ported features and fixes to older versions.
-	\newline{} - Resolved time-sensitive problems with software, data and OS configuration on live systems. Scheduled and handled third-line maintenance including new installations, version migrations, software patches, licence renewals, including customer follow-up. 
-	\newline{} - Built tools to manage licence data, simplifying issuance and shortening maintenance windows.
-	\newline{} - Duplicated customer infrastructure using virtual machines to test failure modes.
-	\newline{} - Wrote documentation to spread knowledge, decrease \textit{bus factor} and discourage \textit{learning by osmosis}. Provided assistance with setup of new hardware.
-	\newline{}
-}
-
-\cventry{Aug. - Dec. 2012}{Opus Information Technology}{}{Driffield}{}{Worked on \textit{Ensemble}, designed to help housing associations manage the complexities of service charges for social housing. Tasks included translating new requirements into working, extensible software, transforming customer data to meet requirements, fixing reported issues and preparing deployment packages for customers. I also provisioned new internal testing systems.
-	\newline{}
-}
-
-\cventry{July - Aug. 2011}{ResQ Contact Services}{}{Hull}{}{Worked as part of the NPower Residential Sales team. Sold energy packages directly to UK households in a fast-paced, target driven environment. Gained a solid foundation of sales and marketing skills.
-	\newline{}
-}
-
-\cventry{April - May 2011}{Omerta Game Limited}{}{Hull}{}{Worked on \textit{Omerta}, a web-based MMORPG. Implemented Google Analytics across all versions of the game to prioritise mobile development efforts. Provided help and support to players and moderators.
-	\newline{}
-}
-
-\section{Other Projects}
-\cventry{July 2012}{LeedsHack 2012 Award Winner}{}{Leeds}{}{As an attendee at LeedsHack (the largest independent hackday outside of London), I volunteered to mentor two under-18's new to software development. Over the next 24 hours - working through the night - they successfully built a functional prototype website allowing users to register for event alerts via SMS from \textit{Breeze} - a local organisation running events for children and young adults. Our team of four won 3 awards including \textit{The HyperLocal Award}, \textit{The Breeze Award} and \textit{Best of Show}.
-	\newline{}
-}
-\small{\cvitem{Writing}{I occasionally write about a variety of things at \href{https://adamjames.github.io}{adamjames.github.io}.}}
-\small{\cvitem{Interests}{Security, Scalability, Privacy, Reverse Engineering, Networking, Performance, UX, Mobile Dev.}}
-
-\section{Education}
-%\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
-\cventry{Sept. 2007 - July 2012}{Bachelor of Science (Hons.) in Computer Science}{The University of Hull}{}{\textit{2:2}}
-{I learned the value of a strong work ethic, punctuality and teamwork. My approach to work and problem solving improved with individual assignments and learning. I functioned effectively as part of a team in group assignments, working to coordinate, delegate and manage tasks. Took time in 2011 to gain experience in the workforce. Returned in February 2012 and graduated with honours.\\\\
-	\begin{tabularx}{\textwidth}{ X X }
-		- Software Engineering & - Software Design Principles \& Practices \\
-		- Mobile Software Design \& Development & - Artificial Intelligence \\
-		- User Interface Design \& HCI & - Networking \& Enterprise Architecture \\
-		- Computer Systems \& Software Security & - Applied Mathematics \\
-		- Distributed Systems Architectures & - Data Mining \& Decision Systems \\
-		- Compiler Design \& Implementation & - Communicating \& Teaching Computing \\
-	\end{tabularx}
-	\newline{}\newline{}
-	In \textit{Communicating \& Teaching Computing}, I taught and presented at a secondary school, working with teachers and students. Two of those students are now employed in the software industry.
-	\newline{}
-}
-
-\cvline{}{\textbf{Selected Projects}}
-\small{\cvline{C\#}{Shopping as a Service - Network-partition tolerant implementation of a self-service till, using WSDL-based Web Services, with a management and reporting system.}}
-\small{\cvline{GNU Flex/Bison/C}{Implementation of a subset-of-C compiler, from a BNF specification of a toy language. Included lexing and parsing of BNF-derived context-free grammar and generation of C code.
-\newline{}}}
-\cvline{}{\textbf{Activities \& Societies}}
-\cventry{}{Vice President}{Thwaite Hall Student Committee}{}{}
-{I served a year on the Student Committee at my halls of residence; organising and running events, managing a budget and discussing future ideas. I was also a point of contact, providing help and advice to students.}
-\cventry{}{Member}{Hull University Disabled Persons Committee}{}{}
-{I spent time working with and advising the committee head, attending meetings to determine the future of university efforts to assist disabled students and wrote a report on the work of the committee for the administration.}
-\cventry{}{Member}{Freeside Linux Computing Group}{}{}
-{I met some of my closest friends here and count it among my most important experiences at university. I became known among my peers for my obsession with security and OS roulette.
-\newline{}
-}
-
-\cventry{2004-2007}{AS/A-Levels}{Wilberforce College, Hull}{}{}
-{
-	\begin{tabularx}{\textwidth}{ X X X }
-		\textbf{Computing} & (A-Level Exam) & A\\
-		\textbf{General Studies} & (A-Level) & C\\
-		\textbf{Physics} & (A-Level) & E\\
-		\textbf{Electronics} & (AS-Level) & D\\
-		\textbf{Film Studies} & (AS-Level) & C\\
-		\textbf{Mathematics} & (AS-Level) & E\\
-	\end{tabularx}
-	\newline{}\newline{}
-	I also received a Distinction in OCR CLAIT and a Wilberforce Curriculum award.
-	\newline{}
-}
+	\maketitle
+	%\placetextbox{distance from left}{distance from bottom}
+	\placetextbox{0.07}{0.955}{\color{dark-gray} \textit{\fontsize{11}{14}\selectfont{.NET-centric developer with nine years of experience in enterprise\\software development. Interested in building modern, scalable\\solutions that provide effortless, low-latency user experiences.}}}%
+	
+	% Add NEGATIVE space after the header on the first page.
+	% This gives us more space for the summary section. Modify as desired.
+	% http://tex.stackexchange.com/a/82871
+	\vspace*{-1cm}
+	\section{Technologies}
+	\cvline{}{I have varying levels of experience with the following technologies, platforms and products:}
+	\small{\cvitem{Primary}{C\#, ASP.NET Core, Angular, EF Core, HTML, CSS, T-SQL}}
+	\small{\cvitem{Older/Minor}{AWS, ASP.NET MVC, WinForms, VB.NET, Web Forms}}
+	\small{\cvitem{\footnotesize{IDE's \& Editors}}{Visual Studio 2005-2019, VS Code, SQL Server Mgmt. Studio, Eclipse, Sublime Text}}
+	\small{\cvitem{SCM}{Common centralised and decentralised systems, inc. Git, SVN, SourceSafe \& Mercurial}}
+	\small{\cvitem{Infrastructure}{Azure Devops, Azure Functions, Docker, Jenkins, Octopus Deploy, DBUp}}
+	\small{\cvitem{OS}{Windows 7-10, Linux (Debian, Arch) and OS X (Yosemite onwards)
+	}}
+	
+	\section{Experience \& Achievements}
+	\cventry{Jan. 2019 - Present}{VentureAxis}{}{Leeds}{}{
+		I'm currently working for VentureAxis, a software consultancy based in Leeds. Full-stack role. Lead developer on two projects for the largest independent music distributor in the UK with over £25m in sales annually.
+		\newline{}
+		\newline{} - Designed and built a Shopify application providing true one-click order fulfilment. Real-time integration processes webhook notifications, forwards orders and notifies Shopify when orders are despatched.
+		Optional dashboard allows detailed management, approval and review of orders. Written using Angular 10, .Net Core, Hangfire, EF Core, ShopifySharp.
+		\newline{} - Designed and built a mailshot system for album release announcements. Featured client-side preview and bespoke Node.js Azure functions PDF generation with upload to Blob Storage. Angular 10, .Net Core back-end.
+		\newline{} - Implemented general-purpose Docker-based PDF microservice for future projects.
+		\newline{} - Built major portions of a custom B2B e-commerce solution using .Net Core, EF Core, SQL Server. Real-time pricing of millions of products on a per-customer basis, with payment via line-of-credit API or SAGEPay.
+		\newline{}
+	}	
+	
+	\cventry{Nov. 2015 - Dec. 2019}{Ctrack (Inseego Corp.)}{}{Leeds}{}{
+		Worked as a Developer for Ctrack; one of the world’s largest telematics (vehicle tracking) companies, with 1,000,000 units deployed in over 50 countries across 5 continents. We provided customers with the means to make targeted improvements to driver behaviour, improving safety and reducing costs. This was a full-stack development role focused on bespoke products and tools for the UK and European markets.
+		\newline{}	
+		\newline{} - Developed applications used by engineers to commission tracking units using mobile devices. For the first time, engineers could work independently to complete field installations and servicing. Automated data-gathering and task closure saves engineers' time and ensures compliance, accuracy and accountability.
+		\newline{} - Maintained our customer-facing SOAP/JSON API, making additions and changes in coordination with third parties. Improved error handling and added performance measurement mechanisms. Improved test coverage using SpecFlow.
+		\newline{} - Built tools allowing rapid, accurate bulk import of customer information, eliminating the need for manual data transformation and copying by customer service staff and shortening the time taken to onboard customers.
+		\newline{} - Configured and utilised CI/CD infrastructure (Jenkins, Octopus Deploy) via Github to allow for one-click compilation, testing, packaging and deployment of new software.
+		\newline{}
+	}
+	%\begin{textblock}{s1}(12.5,3.12)\includegraphics[scale=1.1]{oracle}\end{textblock}
+	\cventry{Feb. 2013 - Nov. 2015}{Oracle Corporation}{}{Melton}{}{
+		Worked on \textit{FRS-POS}, a specialised point of sale, stock logistics and reporting platform written for the furniture retail industry and used by household names worldwide, including a 1000-user deployment in the United States. Our six-person team (responsible for all development and support) joined Oracle with their acquisition of \textit{MICROS Systems} in September of 2014.
+		\newline{}
+		\newline{} - Delivered major new feature sets and enhancements instrumental in migrating customers using a UNIX-based version to the current, .NET-based implementation of our team's product. Work spanned all product layers, including user interface, presentation logic, business logic and back-end.
+		\newline{} - Shipped code across six major releases. Created reporting output for new features using Crystal Reports. Back-ported features and fixes to older versions.
+		\newline{} - Resolved time-sensitive problems with software, data and OS configuration on live systems. Scheduled and handled third-line maintenance including new installations, version migrations, software patches, licence renewals, including customer follow-up. 
+		\newline{} - Built tools to manage licence data, simplifying issuance and shortening maintenance windows.
+		\newline{} - Duplicated customer infrastructure using virtual machines to test failure modes.
+		\newline{} - Wrote documentation to spread knowledge, decrease \textit{bus factor} and discourage \textit{learning by osmosis}. Provided assistance with setup of new hardware.
+		\newline{}
+	}
+	
+	\cventry{Aug. - Dec. 2012}{Opus Information Technology}{}{Driffield}{}{Worked on \textit{Ensemble}, designed to help housing associations manage the complexities of service charges for social housing. Translated new requirements into working, extensible software, transforming customer data to meet requirements, fixing reported issues and preparing deployment packages for customers. I also provisioned new internal testing systems.
+		\newline{}
+	}
+	
+	\cventry{July - Aug. 2011}{ResQ Contact Services}{}{Hull}{}{Worked as part of the NPower Residential Sales team. Sold energy packages directly to UK households in a fast-paced, target driven environment. Gained a solid foundation of sales and marketing skills.
+		\newline{}
+	}
+	
+	\cventry{April - May 2011}{Omerta Game Limited}{}{Hull}{}{Worked on \textit{Omerta}, a web-based MMORPG. Implemented Google Analytics across all versions of the game to prioritise mobile development efforts. Provided help and support to players and moderators.
+		\newline{}
+	}
+	
+	\section{Other Projects}
+	\cventry{July 2012}{LeedsHack 2012 Award Winner}{}{Leeds}{}{As an attendee at LeedsHack (the largest independent hackday outside of London), I volunteered to mentor two under-18's new to software development. Over the next 24 hours - working through the night - they successfully built a functional prototype website allowing users to register for event alerts via SMS from \textit{Breeze} - a local organisation running events for children and young adults. Our team of four won 3 awards including \textit{The HyperLocal Award}, \textit{The Breeze Award} and \textit{Best of Show}.
+		\newline{}
+	}
+	\small{\cvitem{Writing}{I occasionally write about a variety of things at \href{https://adamjames.github.io}{adamjames.github.io}.}}
+	\small{\cvitem{Interests}{Security, Scalability, Privacy, Reverse Engineering, Networking, Performance, UX, Mobile Dev.}}
+	
+	\section{Education}
+	%\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+	\cventry{Sept. 2007 - July 2012}{Bachelor of Science (Hons.) in Computer Science}{The University of Hull}{}{\textit{2:2}}
+	{I learned the value of a strong work ethic, punctuality and teamwork. My approach to work and problem solving improved with individual assignments and learning. I functioned effectively as part of a team in group assignments, working to coordinate, delegate and manage tasks. Took time in 2011 to gain experience in the workforce. Returned in February 2012 and graduated with honours.\\\\
+		\begin{tabularx}{\textwidth}{ X X }
+			- Software Engineering & - Software Design Principles \& Practices \\
+			- Mobile Software Design \& Development & - Artificial Intelligence \\
+			- User Interface Design \& HCI & - Networking \& Enterprise Architecture \\
+			- Computer Systems \& Software Security & - Applied Mathematics \\
+			- Distributed Systems Architectures & - Data Mining \& Decision Systems \\
+			- Compiler Design \& Implementation & - Communicating \& Teaching Computing \\
+		\end{tabularx}
+		\newline{}\newline{}
+		In \textit{Communicating \& Teaching Computing}, I taught and presented at a secondary school, working with teachers and students. Two of those students are now employed in the software industry.
+		\newline{}
+	}
+	
+	\cvline{}{\textbf{Selected Projects}}
+	\small{\cvline{C\#}{Shopping as a Service - Network-partition tolerant implementation of a self-service till, using WSDL-based Web Services, with a management and reporting system.}}
+	\small{\cvline{GNU Flex/Bison/C}{Implementation of a subset-of-C compiler, from a BNF specification of a toy language. Included lexing and parsing of BNF-derived context-free grammar and generation of C code.
+			\newline{}}}
+	\cvline{}{\textbf{Activities \& Societies}}
+	\cventry{}{Vice President}{Thwaite Hall Student Committee}{}{}
+	{I served a year on the Student Committee at my halls of residence; organising and running events, managing a budget and discussing future ideas. I was also a point of contact, providing help and advice to students.}
+	\cventry{}{Member}{Hull University Disabled Persons Committee}{}{}
+	{I spent time working with and advising the committee head, attending meetings to determine the future of university efforts to assist disabled students and wrote a report on the work of the committee for the administration.}
+	\cventry{}{Member}{Freeside Linux Computing Group}{}{}
+	{I met some of my closest friends here and count it among my most important experiences at university. I became known among my peers for my obsession with security and OS roulette.
+		\newline{}
+	}
+	
+	\cventry{2004-2007}{AS/A-Levels}{Wilberforce College, Hull}{}{}
+	{
+		%	\begin{tabularx}{\textwidth}{ X X X }
+		%		\textbf{Computing} & (A-Level Exam) & A\\
+		%		\textbf{General Studies} & (A-Level) & C\\
+		%		\textbf{Physics} & (A-Level) & E\\
+		%		\textbf{Electronics} & (AS-Level) & D\\
+		%		\textbf{Film Studies} & (AS-Level) & C\\
+		%		\textbf{Mathematics} & (AS-Level) & E\\
+		%	\end{tabularx}
+		%	\newline{}\newline{}
+		%	I also received a Distinction in OCR CLAIT and a Wilberforce Curriculum award.
+		%	\newline{}
+	}
 \end{document}
