@@ -47,36 +47,54 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    echo "LaTeX environment for CV loaded"
-    echo "Commands: build, build-no-contact, build-all, clean"
+    # Only show banner in interactive shells
+    if [[ $- == *i* ]]; then
+      echo "LaTeX environment for CV loaded"
+      echo "Commands: build, build-no-contact, build-all, clean"
+    fi
+
+    _find_tex() {
+      local texfile=$(find . -maxdepth 1 -name '*.tex' -type f | head -1)
+      if [ -z "$texfile" ]; then
+        echo "No .tex file found" >&2
+        return 1
+      fi
+      echo "$texfile"
+    }
 
     build() {
-      latexmk -pdf -cd curriculum-vitae/'Adam James - CV.tex'
-      cp curriculum-vitae/'Adam James - CV.pdf' curriculum-vitae/cv.pdf
-      latexmk -c -cd curriculum-vitae/'Adam James - CV.tex'
+      local texfile=$(_find_tex) || return 1
+      local base="''${texfile%.tex}"
+      latexmk -pdf "$texfile"
+      cp "$base.pdf" cv.pdf
+      latexmk -c "$texfile"
     }
 
     build-no-contact() {
-      sed -i 's/\\hidecontactfalse/\\hidecontacttrue/' curriculum-vitae/'Adam James - CV.tex'
-      latexmk -pdf -cd curriculum-vitae/'Adam James - CV.tex'
-      sed -i 's/\\hidecontacttrue/\\hidecontactfalse/' curriculum-vitae/'Adam James - CV.tex'
-      latexmk -c -cd curriculum-vitae/'Adam James - CV.tex'
+      local texfile=$(_find_tex) || return 1
+      sed -i 's/\\hidecontactfalse/\\hidecontacttrue/' "$texfile"
+      latexmk -pdf "$texfile"
+      sed -i 's/\\hidecontacttrue/\\hidecontactfalse/' "$texfile"
+      latexmk -c "$texfile"
     }
 
     build-all() {
-      latexmk -pdf -cd curriculum-vitae/'Adam James - CV.tex'
-      cp curriculum-vitae/'Adam James - CV.pdf' curriculum-vitae/cv.pdf
-      cp curriculum-vitae/'Adam James - CV.pdf' curriculum-vitae/'Adam James - CV (with contact).pdf'
-      sed -i 's/\\hidecontactfalse/\\hidecontacttrue/' curriculum-vitae/'Adam James - CV.tex'
-      latexmk -pdf -cd curriculum-vitae/'Adam James - CV.tex'
-      sed -i 's/\\hidecontacttrue/\\hidecontactfalse/' curriculum-vitae/'Adam James - CV.tex'
-      cp curriculum-vitae/'Adam James - CV.pdf' curriculum-vitae/'Adam James - CV (no contact).pdf'
-      latexmk -pdf -cd curriculum-vitae/'Adam James - CV.tex'
-      latexmk -c -cd curriculum-vitae/'Adam James - CV.tex'
+      local texfile=$(_find_tex) || return 1
+      local base="''${texfile%.tex}"
+      latexmk -pdf "$texfile"
+      cp "$base.pdf" cv.pdf
+      cp "$base.pdf" "$base (with contact).pdf"
+      sed -i 's/\\hidecontactfalse/\\hidecontacttrue/' "$texfile"
+      latexmk -pdf "$texfile"
+      sed -i 's/\\hidecontacttrue/\\hidecontactfalse/' "$texfile"
+      cp "$base.pdf" "$base (no contact).pdf"
+      latexmk -pdf "$texfile"
+      latexmk -c "$texfile"
     }
 
     clean() {
-      latexmk -C -cd curriculum-vitae/'Adam James - CV.tex'
+      local texfile=$(_find_tex) || return 1
+      latexmk -C "$texfile"
     }
   '';
 }
